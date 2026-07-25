@@ -1,0 +1,28 @@
+{
+  "tickets": [
+    {
+      "id": 1,
+      "title": "Fix Login Bug",
+      "description": "Login button is not working",
+      "status": "todo",
+      "priority": "High",
+      "assignee": "Sweta"
+    },
+    {
+      "id": 2,
+      "title": "Design Navbar",
+      "description": "Improve navbar UI",
+      "status": "progress",
+      "priority": "Medium",
+      "assignee": "Rahul"
+    },
+    {
+      "id": 3,
+      "title": "Payment Integration",
+      "description": "Complete payment API",
+      "status": "done",
+      "priority": "High",
+      "assignee": "Riya"
+    }
+  ]
+}
