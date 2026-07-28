@@ -1,4 +1,5 @@
 import "../styles/components.css";
+
 import {
   FaTasks,
   FaClock,
@@ -6,36 +7,84 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
+
 function Stats() {
+
+
+  const statsData = [
+
+    {
+      icon: <FaTasks />,
+      number: 24,
+      title: "Total Tickets"
+    },
+
+    {
+      icon: <FaClock />,
+      number: 8,
+      title: "To Do"
+    },
+
+    {
+      icon: <FaSpinner />,
+      number: 10,
+      title: "In Progress"
+    },
+
+    {
+      icon: <FaCheckCircle />,
+      number: 6,
+      title: "Completed"
+    }
+
+  ];
+
+
+
   return (
-    <section className="stats">
 
-      <div className="stat-card">
-        <FaTasks className="stat-icon" />
-        <h2>24</h2>
-        <p>Total Tickets</p>
-      </div>
+    <div className="stats-container">
 
-      <div className="stat-card">
-        <FaClock className="stat-icon" />
-        <h2>8</h2>
-        <p>To Do</p>
-      </div>
 
-      <div className="stat-card">
-        <FaSpinner className="stat-icon" />
-        <h2>10</h2>
-        <p>In Progress</p>
-      </div>
+      {
+        statsData.map((stat, index)=>(
 
-      <div className="stat-card">
-        <FaCheckCircle className="stat-icon" />
-        <h2>6</h2>
-        <p>Completed</p>
-      </div>
 
-    </section>
+          <div 
+            className="stat-card"
+            key={index}
+          >
+
+
+            <div className="stat-icon">
+
+              {stat.icon}
+
+            </div>
+
+
+            <h2>
+              {stat.number}
+            </h2>
+
+
+            <p>
+              {stat.title}
+            </p>
+
+
+          </div>
+
+
+        ))
+      }
+
+
+    </div>
+
   );
+
 }
+
 
 export default Stats;

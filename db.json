@@ -1,7 +1,7 @@
 {
   "tickets": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Fix Login Bug",
       "description": "Login button is not working",
       "status": "todo",
@@ -9,7 +9,7 @@
       "assignee": "Sweta"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Design Navbar",
       "description": "Improve navbar UI",
       "status": "progress",
@@ -17,12 +17,45 @@
       "assignee": "Rahul"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Payment Integration",
       "description": "Complete payment API",
       "status": "done",
       "priority": "High",
       "assignee": "Riya"
+    },
+    {
+      "title": "do codechef questions",
+      "description": "guyidwoksajoqfuipwoidm",
+      "priority": "Low",
+      "assignee": "Sweta",
+      "status": "todo",
+      "id": "FzIp4X6kiVI"
+    },
+    {
+      "title": "",
+      "description": "",
+      "priority": "Medium",
+      "assignee": "",
+      "status": "todo",
+      "id": "HU-laFlV8oM"
+    },
+    {
+      "title": "complete day 3and 4",
+      "description": "uehduishxjkskLJI",
+      "priority": "High",
+      "assignee": "To progress",
+      "status": "todo",
+      "id": "N_s4bcwfLgg"
+    },
+    {
+      "title": "rkfjoeiJKDW",
+      "description": "2EUDEIODJKKW;L",
+      "priority": "Medium",
+      "assignee": "In progrees",
+      "status": "todo",
+      "id": "eGyscfnx2EM"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

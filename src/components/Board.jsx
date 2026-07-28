@@ -1,80 +1,152 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import Navbar from "./Navbar";
-import Dashboard from "./Dashboard";
 import Stats from "./Stats";
 import Column from "./Column";
+import TicketModal from "./TicketModal";
 
-const tickets = [
+import ticketApi from "../api/ticketApi";
+import "../styles/pages.css";
 
-  {
-    id:1,
-    title:"Fix Login Bug",
-    description:"Login button is not working",
-    priority:"High",
-    assignee:"Sweta",
-    status:"todo",
-  },
-
-  {
-    id:2,
-    title:"Design Navbar",
-    description:"Improve navbar UI",
-    priority:"Medium",
-    assignee:"Rahul",
-    status:"progress",
-  },
-
-  {
-    id:3,
-    title:"Payment Integration",
-    description:"Complete payment API",
-    priority:"High",
-    assignee:"Riya",
-    status:"done",
-  },
-
-];
 
 function Board() {
 
+  const [selectedTicket, setSelectedTicket] = useState(null);
+
+
+  const {
+    data: tickets = [],
+    isLoading,
+    isError
+  } = useQuery({
+
+    queryKey: ["tickets"],
+
+    queryFn: ticketApi.getTickets
+
+  });
+
+
+
+  const onTicketClick = (ticket) => {
+
+    setSelectedTicket(ticket);
+
+  };
+
+
+
+  if(isLoading){
+
+    return (
+      <h2 className="loading">
+        Loading Tickets...
+      </h2>
+    );
+
+  }
+
+
+
+  if(isError){
+
+    return (
+      <h2 className="error">
+        Error loading tickets
+      </h2>
+    );
+
+  }
+
+
+
   return (
 
-    <>
+    <div className="dashboard-page">
+
 
       <Navbar />
 
-      <Dashboard />
 
       <Stats />
 
+
+
       <div className="board">
 
+
         <Column
+
           title="📝 To Do"
-          tickets={tickets.filter(
-            (t)=>t.status==="todo"
-          )}
+
+          tickets={
+            tickets.filter(
+              (ticket)=> ticket.status === "todo"
+            )
+          }
+
+          onTicketClick={onTicketClick}
+
         />
 
+
+
         <Column
+
           title="🚀 In Progress"
-          tickets={tickets.filter(
-            (t)=>t.status==="progress"
-          )}
+
+          tickets={
+            tickets.filter(
+              (ticket)=> ticket.status === "progress"
+            )
+          }
+
+          onTicketClick={onTicketClick}
+
         />
 
+
+
         <Column
+
           title="✅ Done"
-          tickets={tickets.filter(
-            (t)=>t.status==="done"
-          )}
+
+          tickets={
+            tickets.filter(
+              (ticket)=> ticket.status === "done"
+            )
+          }
+
+          onTicketClick={onTicketClick}
+
         />
+
 
       </div>
 
-    </>
+
+
+
+      {
+        selectedTicket && (
+
+          <TicketModal
+
+            ticket={selectedTicket}
+
+          />
+
+        )
+      }
+
+
+
+    </div>
 
   );
 
 }
+
 
 export default Board;
