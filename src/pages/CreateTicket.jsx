@@ -4,206 +4,145 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import ticketApi from "../api/ticketApi";
 
+function CreateTicket() {
 
-function CreateTicket(){
+    const queryClient = useQueryClient();
 
+    const [ticket, setTicket] = useState({
 
-const queryClient = useQueryClient();
+        title: "",
+        description: "",
+        priority: "Medium",
+        assignee: "",
+        status: "todo"
 
+    });
 
+    const createMutation = useMutation({
 
-const [ticket,setTicket] = useState({
+        mutationFn: ticketApi.createTicket,
 
-title:"",
-description:"",
-priority:"Medium",
-assignee:"",
-status:"todo"
+        onSuccess: () => {
 
-});
+            queryClient.invalidateQueries({
 
+                queryKey: ["tickets"]
 
+            });
 
+            alert("✅ Ticket Created Successfully");
 
-const createMutation = useMutation({
+            setTicket({
 
-mutationFn: ticketApi.createTicket,
+                title: "",
+                description: "",
+                priority: "Medium",
+                assignee: "",
+                status: "todo"
 
+            });
 
-onSuccess:()=>{
+        },
 
+        onError: () => {
 
-queryClient.invalidateQueries({
+            alert("❌ Failed to create ticket. Please try again.");
 
-queryKey:["tickets"]
+        }
 
-});
+    });
 
+    const handleChange = (e) => {
 
-alert("Ticket Created");
+        setTicket({
 
+            ...ticket,
 
-setTicket({
+            [e.target.name]: e.target.value
 
-title:"",
-description:"",
-priority:"Medium",
-assignee:"",
-status:"todo"
+        });
 
-});
+    };
 
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+
+        // Day 7 Validation
+        if (
+            ticket.title.trim() === "" ||
+            ticket.description.trim() === "" ||
+            ticket.assignee.trim() === ""
+        ) {
+
+            alert("Please fill all fields.");
+
+            return;
+
+        }
+
+        createMutation.mutate(ticket);
+
+    };
+
+    return (
+
+        <div className="create-ticket">
+
+            <h1>Create Ticket</h1>
+
+            <form onSubmit={handleSubmit}>
+
+                <input
+                    name="title"
+                    placeholder="Ticket Title"
+                    value={ticket.title}
+                    onChange={handleChange}
+                />
+
+                <textarea
+                    name="description"
+                    placeholder="Description"
+                    value={ticket.description}
+                    onChange={handleChange}
+                />
+
+                <select
+                    name="priority"
+                    value={ticket.priority}
+                    onChange={handleChange}
+                >
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+
+                <input
+                    name="assignee"
+                    placeholder="Assignee"
+                    value={ticket.assignee}
+                    onChange={handleChange}
+                />
+
+                <button
+                    type="submit"
+                    disabled={createMutation.isPending}
+                >
+
+                    {
+                        createMutation.isPending
+                            ? "Creating..."
+                            : "Create Ticket"
+                    }
+
+                </button>
+
+            </form>
+
+        </div>
+
+    );
 
 }
-
-
-});
-
-
-
-
-
-const handleChange=(e)=>{
-
-
-setTicket({
-
-...ticket,
-
-[e.target.name]:e.target.value
-
-});
-
-
-};
-
-
-
-
-
-const handleSubmit=(e)=>{
-
-
-e.preventDefault();
-
-
-createMutation.mutate(ticket);
-
-
-};
-
-
-
-
-
-return(
-
-
-<div className="create-ticket">
-
-
-<h1>Create Ticket</h1>
-
-
-
-
-<form onSubmit={handleSubmit}>
-
-
-
-<input
-
-name="title"
-
-placeholder="Ticket Title"
-
-value={ticket.title}
-
-onChange={handleChange}
-
-/>
-
-
-
-
-<textarea
-
-name="description"
-
-placeholder="Description"
-
-value={ticket.description}
-
-onChange={handleChange}
-
-/>
-
-
-
-
-<select
-
-name="priority"
-
-value={ticket.priority}
-
-onChange={handleChange}
-
->
-
-
-<option>High</option>
-
-<option>Medium</option>
-
-<option>Low</option>
-
-
-</select>
-
-
-
-
-<input
-
-name="assignee"
-
-placeholder="Assignee"
-
-value={ticket.assignee}
-
-onChange={handleChange}
-
-/>
-
-
-
-
-<button type="submit">
-
-{
-createMutation.isPending
-?
-"Creating..."
-:
-"Create Ticket"
-}
-
-</button>
-
-
-
-</form>
-
-
-
-</div>
-
-
-);
-
-
-}
-
 
 export default CreateTicket;

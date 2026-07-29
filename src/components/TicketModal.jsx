@@ -2,111 +2,94 @@ import { useEffect, useRef } from "react";
 
 import "../styles/components.css";
 
-
 function TicketModal({ ticket }) {
 
+    const modalRef = useRef();
 
-  const modalRef = useRef();
+    useEffect(() => {
 
+        if (!ticket) return;
 
+        modalRef.current.showModal();
 
-  useEffect(()=>{
+        const handleKeyDown = (event) => {
 
+            if (event.key === "Escape") {
 
-    if(ticket){
+                modalRef.current.close();
 
-      modalRef.current.showModal();
+            }
+
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+
+            window.removeEventListener("keydown", handleKeyDown);
+
+        };
+
+    }, [ticket]);
+
+    const closeModal = () => {
+
+        modalRef.current.close();
+
+    };
+
+    if (!ticket) {
+
+        return null;
 
     }
 
+    return (
 
-  }, [ticket]);
-
-
-
-
-  const closeModal = ()=>{
-
-    modalRef.current.close();
-
-  };
-
-
-
-  return (
-
-
-    <dialog
-
-      ref={modalRef}
-
-      className="ticket-modal"
-
-    >
-
-
-      <div className="modal-content">
-
-
-        <h2>
-          {ticket.title}
-        </h2>
-
-
-
-        <p>
-          {ticket.description}
-        </p>
-
-
-
-
-        <div className="modal-info">
-
-
-          <span>
-            Priority: {ticket.priority}
-          </span>
-
-
-          <span>
-            Status: {ticket.status}
-          </span>
-
-
-          <span>
-            Ticket ID: #{ticket.id}
-          </span>
-
-
-        </div>
-
-
-
-
-        <button
-
-          className="close-btn"
-
-          onClick={closeModal}
-
+        <dialog
+            ref={modalRef}
+            className="ticket-modal"
         >
 
-          Close
+            <div className="modal-content">
 
-        </button>
+                <h2>{ticket.title}</h2>
 
+                <p>{ticket.description}</p>
 
+                <div className="modal-info">
 
-      </div>
+                    <span>
+                        <strong>Priority:</strong> {ticket.priority}
+                    </span>
 
+                    <span>
+                        <strong>Status:</strong> {ticket.status}
+                    </span>
 
+                    <span>
+                        <strong>Assignee:</strong> {ticket.assignee}
+                    </span>
 
-    </dialog>
+                    <span>
+                        <strong>Ticket ID:</strong> #{ticket.id}
+                    </span>
 
-  );
+                </div>
+
+                <button
+                    className="close-btn"
+                    onClick={closeModal}
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </dialog>
+
+    );
 
 }
-
 
 export default TicketModal;

@@ -29,9 +29,9 @@ function Board() {
     queryFn: ticketApi.getTickets,
   });
 
-  // -----------------------------
-  // Optimistic UI (Day 5)
-  // -----------------------------
+  // ==========================
+  // Move Ticket (Optimistic UI)
+  // ==========================
 
   const updateMutation = useMutation({
 
@@ -50,15 +50,11 @@ function Board() {
       queryClient.setQueryData(
         ["tickets"],
         (oldTickets) =>
-
           oldTickets.map((ticket) =>
-
             ticket.id === id
               ? { ...ticket, status }
               : ticket
-
           )
-
       );
 
       return { previousTickets };
@@ -72,6 +68,8 @@ function Board() {
         context.previousTickets
       );
 
+      alert("Failed to move ticket.");
+
     },
 
     onSettled: () => {
@@ -84,48 +82,93 @@ function Board() {
 
   });
 
-  // -----------------------------
-  // Move Ticket
-  // -----------------------------
+  // ==========================
+  // Delete Ticket
+  // ==========================
 
-const moveTicket = useCallback((ticket) => {
+  const deleteMutation = useMutation({
 
-  let nextStatus = "";
+    mutationFn: ticketApi.deleteTicket,
 
-  if (ticket.status === "todo") {
+    onSuccess: () => {
 
-    nextStatus = "progress";
+      queryClient.invalidateQueries({
+        queryKey: ["tickets"],
+      });
 
-  }
+      alert("Ticket Deleted Successfully");
 
-  else if (ticket.status === "progress") {
+    },
 
-    nextStatus = "done";
+    onError: () => {
 
-  }
+      alert("Failed to Delete Ticket");
 
-  else if (ticket.status === "done") {
-
-    nextStatus = "todo";
-
-  }
-
-  updateMutation.mutate({
-
-    id: ticket.id,
-
-    status: nextStatus,
+    },
 
   });
 
-}, 
-[updateMutation]);
+  // ==========================
+  // Move Ticket
+  // ==========================
 
- const onTicketClick = useCallback((ticket) => {
+  const moveTicket = useCallback((ticket) => {
 
-  setSelectedTicket(ticket);
+    let nextStatus = "";
 
-}, []);
+    if (ticket.status === "todo") {
+
+      nextStatus = "progress";
+
+    }
+
+    else if (ticket.status === "progress") {
+
+      nextStatus = "done";
+
+    }
+
+    else {
+
+      nextStatus = "todo";
+
+    }
+
+    updateMutation.mutate({
+
+      id: ticket.id,
+
+      status: nextStatus,
+
+    });
+
+  }, [updateMutation]);
+
+  // ==========================
+  // Delete Ticket
+  // ==========================
+
+  const deleteTicket = useCallback((id) => {
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this ticket?"
+    );
+
+    if (!confirmDelete) return;
+
+    deleteMutation.mutate(id);
+
+  }, [deleteMutation]);
+
+  // ==========================
+  // Open Modal
+  // ==========================
+
+  const onTicketClick = useCallback((ticket) => {
+
+    setSelectedTicket(ticket);
+
+  }, []);
 
   if (isLoading) {
 
@@ -159,35 +202,32 @@ const moveTicket = useCallback((ticket) => {
 
         <Column
           title="📝 To Do"
-          tickets={
-            tickets.filter(
-              (ticket) => ticket.status === "todo"
-            )
-          }
+          tickets={tickets.filter(
+            (ticket) => ticket.status === "todo"
+          )}
           onTicketClick={onTicketClick}
           moveTicket={moveTicket}
+          deleteTicket={deleteTicket}
         />
 
         <Column
           title="🚀 In Progress"
-          tickets={
-            tickets.filter(
-              (ticket) => ticket.status === "progress"
-            )
-          }
+          tickets={tickets.filter(
+            (ticket) => ticket.status === "progress"
+          )}
           onTicketClick={onTicketClick}
           moveTicket={moveTicket}
+          deleteTicket={deleteTicket}
         />
 
         <Column
           title="✅ Done"
-          tickets={
-            tickets.filter(
-              (ticket) => ticket.status === "done"
-            )
-          }
+          tickets={tickets.filter(
+            (ticket) => ticket.status === "done"
+          )}
           onTicketClick={onTicketClick}
           moveTicket={moveTicket}
+          deleteTicket={deleteTicket}
         />
 
       </div>

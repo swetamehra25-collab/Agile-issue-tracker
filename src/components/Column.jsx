@@ -6,6 +6,7 @@ function Column({
   tickets,
   onTicketClick,
   moveTicket,
+  deleteTicket,
 }) {
 
   return (
@@ -39,6 +40,8 @@ function Column({
                 onClick={onTicketClick}
 
                 moveTicket={moveTicket}
+
+                deleteTicket={deleteTicket}
 
               />
 

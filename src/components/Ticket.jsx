@@ -1,7 +1,17 @@
 import { memo } from "react";
 import "../styles/components.css";
 
-function Ticket({ ticket, onClick, moveTicket }) {
+function Ticket({
+
+  ticket,
+
+  onClick,
+
+  moveTicket,
+
+  deleteTicket,
+
+}) {
 
   return (
 
@@ -12,9 +22,7 @@ function Ticket({ ticket, onClick, moveTicket }) {
 
       <div className="ticket-top">
 
-        <h3>
-          {ticket.title}
-        </h3>
+        <h3>{ticket.title}</h3>
 
         <span
           className={`priority ${ticket.priority.toLowerCase()}`}
@@ -40,18 +48,43 @@ function Ticket({ ticket, onClick, moveTicket }) {
 
       </div>
 
-   <button
-  className="move-btn"
-  onClick={(e) => {
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: "10px",
+          marginTop: "15px",
+        }}
+      >
 
-    e.stopPropagation();
+        <button
+          className="move-btn"
+          onClick={(e) => {
 
-    moveTicket(ticket);
+            e.stopPropagation();
 
-  }}
->
-  Move →
-</button>
+            moveTicket(ticket);
+
+          }}
+        >
+          Move →
+        </button>
+
+        <button
+          className="move-btn"
+          style={{ background: "#ef4444" }}
+          onClick={(e) => {
+
+            e.stopPropagation();
+
+            deleteTicket(ticket.id);
+
+          }}
+        >
+          Delete
+        </button>
+
+      </div>
 
     </div>
 
