@@ -4,7 +4,7 @@
       "id": "1",
       "title": "Fix Login Bug",
       "description": "Login button is not working",
-      "status": "todo",
+      "status": "progress",
       "priority": "High",
       "assignee": "Sweta"
     },
@@ -12,7 +12,7 @@
       "id": "2",
       "title": "Design Navbar",
       "description": "Improve navbar UI",
-      "status": "progress",
+      "status": "todo",
       "priority": "Medium",
       "assignee": "Rahul"
     },
@@ -20,7 +20,7 @@
       "id": "3",
       "title": "Payment Integration",
       "description": "Complete payment API",
-      "status": "done",
+      "status": "todo",
       "priority": "High",
       "assignee": "Riya"
     },
@@ -37,7 +37,7 @@
       "description": "",
       "priority": "Medium",
       "assignee": "",
-      "status": "todo",
+      "status": "done",
       "id": "HU-laFlV8oM"
     },
     {
@@ -45,7 +45,7 @@
       "description": "uehduishxjkskLJI",
       "priority": "High",
       "assignee": "To progress",
-      "status": "todo",
+      "status": "done",
       "id": "N_s4bcwfLgg"
     },
     {
@@ -53,8 +53,16 @@
       "description": "2EUDEIODJKKW;L",
       "priority": "Medium",
       "assignee": "In progrees",
-      "status": "todo",
+      "status": "done",
       "id": "eGyscfnx2EM"
+    },
+    {
+      "title": "DO YOGA AT 5:00 PM",
+      "description": "efjklsJL",
+      "priority": "High",
+      "assignee": "himanshi",
+      "status": "progress",
+      "id": "bJy-7dMJY0s"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

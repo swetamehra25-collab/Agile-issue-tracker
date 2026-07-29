@@ -871,3 +871,49 @@ text-align:center;
 }
 
 }
+
+
+/* ===========================
+MOVE BUTTON
+=========================== */
+
+.move-btn{
+
+    margin-top:15px;
+
+    margin-left:auto;
+
+    display:block;
+
+    border:none;
+
+    padding:8px 18px;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+    135deg,
+    #00d4aa,
+    #06b6d4
+    );
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.move-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 18px rgba(0,212,170,.3);
+
+}

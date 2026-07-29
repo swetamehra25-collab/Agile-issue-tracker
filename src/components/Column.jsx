@@ -1,14 +1,16 @@
 import Ticket from "./Ticket";
 import "../styles/components.css";
 
-
-function Column({ title, tickets, onTicketClick }) {
-
+function Column({
+  title,
+  tickets,
+  onTicketClick,
+  moveTicket,
+}) {
 
   return (
 
     <div className="column">
-
 
       <div className="column-header">
 
@@ -20,15 +22,13 @@ function Column({ title, tickets, onTicketClick }) {
 
       </div>
 
-
-
       <div className="column-body">
 
-
         {
+
           tickets.length > 0 ? (
 
-            tickets.map((ticket)=>(
+            tickets.map((ticket) => (
 
               <Ticket
 
@@ -37,6 +37,8 @@ function Column({ title, tickets, onTicketClick }) {
                 ticket={ticket}
 
                 onClick={onTicketClick}
+
+                moveTicket={moveTicket}
 
               />
 
@@ -49,17 +51,15 @@ function Column({ title, tickets, onTicketClick }) {
             </p>
 
           )
+
         }
 
-
       </div>
-
 
     </div>
 
   );
 
 }
-
 
 export default Column;
