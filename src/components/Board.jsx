@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import {
   useQuery,
@@ -88,7 +88,7 @@ function Board() {
   // Move Ticket
   // -----------------------------
 
- const moveTicket = (ticket) => {
+const moveTicket = useCallback((ticket) => {
 
   let nextStatus = "";
 
@@ -118,12 +118,14 @@ function Board() {
 
   });
 
-};
-  const onTicketClick = (ticket) => {
+}, 
+[updateMutation]);
 
-    setSelectedTicket(ticket);
+ const onTicketClick = useCallback((ticket) => {
 
-  };
+  setSelectedTicket(ticket);
+
+}, []);
 
   if (isLoading) {
 

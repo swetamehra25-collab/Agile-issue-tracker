@@ -4,7 +4,7 @@
       "id": "1",
       "title": "Fix Login Bug",
       "description": "Login button is not working",
-      "status": "progress",
+      "status": "todo",
       "priority": "High",
       "assignee": "Sweta"
     },
@@ -12,7 +12,7 @@
       "id": "2",
       "title": "Design Navbar",
       "description": "Improve navbar UI",
-      "status": "todo",
+      "status": "done",
       "priority": "Medium",
       "assignee": "Rahul"
     },
@@ -29,7 +29,7 @@
       "description": "guyidwoksajoqfuipwoidm",
       "priority": "Low",
       "assignee": "Sweta",
-      "status": "todo",
+      "status": "progress",
       "id": "FzIp4X6kiVI"
     },
     {

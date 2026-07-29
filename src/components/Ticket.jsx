@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "../styles/components.css";
 
 function Ticket({ ticket, onClick, moveTicket }) {
@@ -58,4 +59,4 @@ function Ticket({ ticket, onClick, moveTicket }) {
 
 }
 
-export default Ticket;
+export default memo(Ticket);
