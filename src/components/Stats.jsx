@@ -7,84 +7,62 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
+function Stats({ tickets }) {
+  const totalTickets = tickets.length;
 
-function Stats() {
+  const todoCount = tickets.filter(
+    (ticket) => ticket.status === "todo"
+  ).length;
 
+  const progressCount = tickets.filter(
+    (ticket) => ticket.status === "progress"
+  ).length;
+
+  const completedCount = tickets.filter(
+    (ticket) => ticket.status === "done"
+  ).length;
 
   const statsData = [
-
     {
       icon: <FaTasks />,
-      number: 24,
-      title: "Total Tickets"
+      number: totalTickets,
+      title: "Total Tickets",
     },
-
     {
       icon: <FaClock />,
-      number: 8,
-      title: "To Do"
+      number: todoCount,
+      title: "To Do",
     },
-
     {
       icon: <FaSpinner />,
-      number: 10,
-      title: "In Progress"
+      number: progressCount,
+      title: "In Progress",
     },
-
     {
       icon: <FaCheckCircle />,
-      number: 6,
-      title: "Completed"
-    }
-
+      number: completedCount,
+      title: "Completed",
+    },
   ];
 
-
-
   return (
-
     <div className="stats-container">
-
-
-      {
-        statsData.map((stat, index)=>(
-
-
-          <div 
-            className="stat-card"
-            key={index}
-          >
-
-
-            <div className="stat-icon">
-
-              {stat.icon}
-
-            </div>
-
-
-            <h2>
-              {stat.number}
-            </h2>
-
-
-            <p>
-              {stat.title}
-            </p>
-
-
+      {statsData.map((stat, index) => (
+        <div
+          className="stat-card"
+          key={index}
+        >
+          <div className="stat-icon">
+            {stat.icon}
           </div>
 
+          <h2>{stat.number}</h2>
 
-        ))
-      }
-
-
+          <p>{stat.title}</p>
+        </div>
+      ))}
     </div>
-
   );
-
 }
-
 
 export default Stats;
