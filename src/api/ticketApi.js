@@ -1,5 +1,4 @@
 const BASE_URL = "https://agile-issue-tracker.onrender.com/tickets";
-
 // Get All Tickets
 async function getTickets() {
 
