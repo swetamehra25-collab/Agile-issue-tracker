@@ -1,23 +1,31 @@
 {
   "tickets": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Fix Login Bug",
       "description": "Login button is not working",
+      "status": "done",
+      "priority": "High",
+      "assignee": "Sweta"
+    },
+    {
+      "id": 2,
+      "title": "Design Navbar",
+      "description": "Improve navbar UI",
+      "status": "progress",
+      "priority": "Medium",
+      "assignee": "Rahul"
+    },
+    {
+      "id": 3,
+      "title": "Complete Day 3 and 4",
+      "description": "Finish Agile Issue Tracker implementation",
       "status": "todo",
       "priority": "High",
       "assignee": "Sweta"
     },
     {
-      "id": "2",
-      "title": "Design Navbar",
-      "description": "Improve navbar UI",
-      "status": "todo",
-      "priority": "Medium",
-      "assignee": "Rahul"
-    },
-    {
-      "id": "4",
+      "id": 4,
       "title": "Do Yoga at 5:00 PM",
       "description": "Daily fitness activity task",
       "status": "progress",
@@ -25,13 +33,12 @@
       "assignee": "Himanshi"
     },
     {
-      "id": "5",
+      "id": 5,
       "title": "Practice CSS Questions",
       "description": "Complete CSS practice tasks",
       "status": "done",
       "priority": "Low",
       "assignee": "Sweta"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

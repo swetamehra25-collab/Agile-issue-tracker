@@ -266,6 +266,30 @@ font-size:15px;
 
 }
 
+@media(max-width:900px){
+
+.navbar{
+    flex-direction:column;
+    align-items:stretch;
+    gap:20px;
+}
+
+.brand-section{
+    width:100%;
+}
+
+.search-box{
+    width:100%;
+    max-width:none;
+}
+
+.navbar-actions{
+    width:100%;
+    justify-content:space-between;
+}
+
+}
+
 /* ===========================
    STATS
 =========================== */
