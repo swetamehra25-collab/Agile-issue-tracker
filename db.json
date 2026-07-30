@@ -4,7 +4,7 @@
       "id": "1",
       "title": "Fix Login Bug",
       "description": "Login button is not working",
-      "status": "done",
+      "status": "todo",
       "priority": "High",
       "assignee": "Sweta"
     },
@@ -12,33 +12,25 @@
       "id": "2",
       "title": "Design Navbar",
       "description": "Improve navbar UI",
-      "status": "progress",
+      "status": "todo",
       "priority": "Medium",
       "assignee": "Rahul"
     },
     {
-      "title": "complete day 3and 4",
-      "description": "uehduishxjkskLJI",
-      "priority": "High",
-      "assignee": "To progress",
-      "status": "todo",
-      "id": "N_s4bcwfLgg"
-    },
-    {
-      "title": "DO YOGA AT 5:00 PM",
-      "description": "efjklsJL",
-      "priority": "High",
-      "assignee": "himanshi",
+      "id": "4",
+      "title": "Do Yoga at 5:00 PM",
+      "description": "Daily fitness activity task",
       "status": "progress",
-      "id": "bJy-7dMJY0s"
+      "priority": "High",
+      "assignee": "Himanshi"
     },
     {
-      "title": "do css question ",
-      "description": "dtguyshckjs",
-      "priority": "Low",
-      "assignee": "Sweta",
+      "id": "5",
+      "title": "Practice CSS Questions",
+      "description": "Complete CSS practice tasks",
       "status": "done",
-      "id": "ekD8iWx6pUU"
+      "priority": "Low",
+      "assignee": "Sweta"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

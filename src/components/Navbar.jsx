@@ -3,135 +3,52 @@ import { Link } from "react-router-dom";
 
 import "../styles/components.css";
 
-
-function Navbar() {
-
-
+function Navbar({ search, setSearch }) {
   return (
-
     <nav className="navbar">
-
-
+      {/* Logo */}
       <div className="brand-section">
-
-
         <div className="logo-box">
           SF
         </div>
 
-
         <div className="brand-text">
-
-          <h2>
-            SprintFlow
-          </h2>
-
-          <p>
-            Agile Issue Tracker
-          </p>
-
+          <h2>SprintFlow</h2>
+          <p>Agile Issue Tracker</p>
         </div>
-
-
       </div>
 
+      {/* Search */}
+      <div className="search-box">
+        <FaSearch />
 
+        <input
+          type="text"
+          placeholder="Search by title, description or priority..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-
-
-      <ul className="nav-links">
-
-
-        <li className="active">
-          Dashboard
-        </li>
-
-
-        <li>
-          My Tasks
-        </li>
-
-
-        <li>
-          Teams
-        </li>
-
-
-        <li>
-          Reports
-        </li>
-
-
-      </ul>
-
-
-
-
-
+      {/* Right Side */}
       <div className="navbar-actions">
-
-
-        <div className="search-box">
-
-          <FaSearch />
-
-          <input
-
-            type="text"
-
-            placeholder="Search tickets..."
-
-          />
-
-        </div>
-
-
-
-
-
         <Link
-
           to="/create-ticket"
-
           className="create-btn"
-
         >
-
           + Create Ticket
-
         </Link>
 
-
-
-
-
         <div className="notification">
-
           <FaBell />
-
         </div>
-
-
-
-
 
         <div className="profile">
-
           S
-
         </div>
-
-
-
       </div>
-
-
-
     </nav>
-
   );
-
 }
-
 
 export default Navbar;
